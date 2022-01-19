@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+
+    <Properties>
+        <Property name="LOG_PATTERN">%d [%X{UNIQUE_ID}] [%t] %-5level %logger{36} - %msg%n%throwable</Property>
+        <Property name="LOG_PATH_AND_FILE_NAME">${env:LOG_PATH_AND_FILE_NAME:-/app/log/url-shortener/app}</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="ConsoleAppender" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+        <RollingFile
+                name="RollingFileAppender"
+                fileName="${LOG_PATH_AND_FILE_NAME}.log"
+                filePattern="${LOG_PATH_AND_FILE_NAME}.%d{yyyyMMdd.HH}.%i.log"
+                ignoreExceptions="false">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="200 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+
+        <Logger name="COMMON_LOGGER" additivity="false" level="INFO">
+            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="RollingFileAppender"/>
+        </Logger>
+
+        <Logger name="org.apache" additivity="false" level="INFO">
+            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="RollingFileAppender"/>
+        </Logger>
+
+        <Root level="INFO">
+            <AppenderRef ref="ConsoleAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>

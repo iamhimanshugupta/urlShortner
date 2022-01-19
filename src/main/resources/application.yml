@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: url-shortener
+  datasource:
+    url: jdbc:h2:mem:urlShortenerDb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    hibernate.ddl-auto: create-drop
+    show-sql: true
+  h2:
+    console.enabled: true
+    console.path: /h2-console
+    console.settings.trace: false
+    spring.h2.console.settings.web-allow-others: false
+
+server:
+  servlet:
+      context-path: /${spring.application.name}
+  tomcat:
+    accesslog:
+      enabled: true
+      directory: /app/log/url-shortener
+      prefix: access_log
+      suffix: .log
+      file-date-format: .yyyyMMdd
