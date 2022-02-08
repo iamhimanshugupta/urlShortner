@@ -25,7 +25,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class UrlShortenerApplicationTests {
+class UrlShortenerApplicationIT {
 
     @Autowired
     private TestRestTemplate testRestTemplate;
@@ -86,7 +86,6 @@ class UrlShortenerApplicationTests {
         ResponseEntity<List<TinyUrls>> listResponseEntity = this.testRestTemplate.exchange(getAllUrls, HttpMethod.GET, getAllUrlsHttpEntity, new ParameterizedTypeReference<List<TinyUrls>>() {
         });
 
-        //TODO Ask Bhasker Sir
         assertEquals(Collections.singletonList(tinyUrlsOptional.get()), listResponseEntity.getBody());
     }
 
