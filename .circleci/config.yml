@@ -8,10 +8,16 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Creating Directory and File
+          command: |
+            sudo mkdir -p $LOG_PATH && \
+            sudo touch $LOG_PATH/$LOG_FILE_NAME && \
+            sudo chmod 777 $LOG_PATH/$LOG_FILE_NAME
+      - run:
           name: Git Config
           command: |
-            git config --global user.email "himanshuallinone001@gmail.com" && \
-            git config --global user.name "Himanshu Gupta"
+            git config --global user.email $GIT_USER_EMAIL && \
+            git config --global user.name $GIT_USER_NAME
       - run:
           name: Test
           command: mvn test
@@ -25,6 +31,9 @@ workflows:
   "Test-Build-Release":
     jobs:
       - test-build-release:
+          context:
+            - SECRETS
+            - COMMONS
           filters:
             branches:
               only:
