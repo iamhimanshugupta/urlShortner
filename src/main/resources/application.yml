@@ -23,7 +23,7 @@ server:
   tomcat:
     accesslog:
       enabled: true
-      directory: /app/log/url-shortener
+      directory: ${TOMCAT_ACCESS_LOG_DIRECTORY}
       prefix: access_log
       suffix: .log
       file-date-format: .yyyyMMdd
