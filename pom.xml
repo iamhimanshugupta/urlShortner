@@ -9,7 +9,7 @@
     </parent>
     <groupId>com.practice</groupId>
     <artifactId>url-shortener</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.2</version>
     <name>URL Shortener</name>
     <description>Practice project for Making URL Shorteners</description>
 
@@ -25,7 +25,7 @@
     <scm>
         <url>https://github.com/iamhimanshugupta/urlShortner</url>
         <developerConnection>scm:git:https://github.com/iamhimanshugupta/urlShortner.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>url-shortener-0.0.2</tag>
     </scm>
 
     <dependencies>
